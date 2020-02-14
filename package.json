@@ -1,7 +1,7 @@
 {
   "name": "webpack-starter",
   "version": "1.0.0",
-  "description": "Starter kit with webpack, babel and sass.",
+  "description": "Starter kit with webpack and sass.",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,6 @@
   "keywords": [
     "webpack",
     "starter",
-    "babel",
     "sass"
   ],
   "author": "Leben Asa",
