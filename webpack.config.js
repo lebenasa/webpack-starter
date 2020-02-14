@@ -59,9 +59,5 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.WatchIgnorePlugin([
-        //     /\.js$/,
-        //     /\.d\.ts$/
-        // ]),
     ],
 };
