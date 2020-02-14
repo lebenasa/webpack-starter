@@ -1,3 +1,4 @@
+import './index.html';
 import './style.sass';
 
 function component() {
