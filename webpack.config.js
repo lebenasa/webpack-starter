@@ -1,12 +1,27 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
     },
-    devtool: 'source-map',
+    resolve: {
+        extensions: [
+            '.tsx',
+            '.ts',
+            '.js',
+        ],
+    },
+    watchOptions: {
+        poll: true,
+        ignored: [
+            'node_modules/**',
+            'dist/*.js',
+            'dist/*.d.ts',
+        ],
+    },
+    devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
     },
@@ -14,9 +29,7 @@ module.exports = {
         rules: [
             {
                 test: /\.html$/i,
-                include: [
-                    path.resolve(__dirname, 'src/'),
-                ],
+                exclude: /dist/,
                 use: [
                     'file-loader?name=[name].[ext]',
                     'extract-loader',
@@ -25,9 +38,6 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
-                include: [
-                    path.resolve(__dirname, 'src/'),
-                ],
                 use: [
                     // Creates `style` nodes from JS strings
                     'style-loader',
@@ -37,6 +47,21 @@ module.exports = {
                     'sass-loader',
                 ],
             },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options: {
+                    transpileOnly: true,
+                    experimentalWatchApi: true,
+                },
+            },
         ]
-    }
+    },
+    plugins: [
+        // new webpack.WatchIgnorePlugin([
+        //     /\.js$/,
+        //     /\.d\.ts$/
+        // ]),
+    ],
 };
